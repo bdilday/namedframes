@@ -5,3 +5,5 @@ __email__ = "ben.dilday.phd@gmail.com"
 __version__ = "0.1.0"
 
 from .pandas_frames import NamedPandasDataFrame
+
+__all__ = ["NamedPandasDataFrame"]
