@@ -2,7 +2,7 @@
 
 __author__ = """Ben Dilday"""
 __email__ = "ben.dilday.phd@gmail.com"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 from .pandas_frames import PandasNamedFrame
 
