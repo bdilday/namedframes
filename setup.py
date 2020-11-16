@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
-history = ''
+history = ""
 requirements = []
 
 setup_requirements = [
@@ -41,6 +41,7 @@ setup(
     name="namedframes",
     packages=find_packages(include=["namedframes", "namedframes.*"]),
     setup_requires=setup_requirements,
+    extras_require={"pyspark": ["pyspark>=2.4.5"]},
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/bdilday/namedframes",
