@@ -63,11 +63,13 @@ Example usage:
 
 ```
 import pandas as pd 
+from pyspark.sql import SparkSession
 from namedframes import SparkNamedFrame 
 
 class InputDF(SparkNamedFrame): 
     x: float 
 
+spark = SparkSession.builder.getOrCreate()
 spark_df = spark.createDataFrame(pd.DataFrame({"x": [1.1, 2.2]}))                                                      
-input_df = InputDF(pd.DataFrame(spark_df))
+input_df = InputDF(spark_df)
 ```
