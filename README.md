@@ -16,9 +16,9 @@ pip install namedframes
 
 ```python
 import pandas as pd
-from namedframes import NamedPandasDataFrame
+from namedframes import PandasNamedFrame
 
-class InputDF(NamedPandasDataFrame):
+class InputDF(PandasNamedFrame):
     x: float
 
 class OutputDF(InputDF):
@@ -33,11 +33,16 @@ input_df = InputDF(pd.DataFrame({"x": [1.1, 2.2]}))
 output = transform(input_df)
 
 isinstance(input_df, InputDF)
+True
+
 isinstance(output, OutputDF)
+True
 ```
 
 If a column is missing, a validation error occurs,
 
 ```python
 OutputDF(input_df)
+
+ValueError: missing columns: [('blah', <class 'bool'>)]
 ```
