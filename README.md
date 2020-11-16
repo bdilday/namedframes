@@ -1,37 +1,48 @@
-===========
-namedframes
-===========
+# namedframes
+
+Basic type annotation support for Pandas and Spark data frames.
+The goal is to provide a convenient way to specify a name-to-type mapping.
+The assurance that the columns conform to the types is left to the user, 
+i.e. this provides *named* data frames, not *typed* data frames. 
 
 
-.. image:: https://img.shields.io/pypi/v/namedframes.svg
-        :target: https://pypi.python.org/pypi/namedframes
+## Installation
 
-.. image:: https://img.shields.io/travis/bdilday/namedframes.svg
-        :target: https://travis-ci.com/bdilday/namedframes
+```bash
+pip install namedframes
+```
 
-.. image:: https://readthedocs.org/projects/namedframes/badge/?version=latest
-        :target: https://namedframes.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
+## Usage
+
+```python
+import pandas as pd
+from namedframes import PandasNamedFrame
+
+class InputDF(PandasNamedFrame):
+    x: float
+
+class OutputDF(InputDF):
+    blah: bool
 
 
+def transform(input_data: InputDF) -> OutputDF:
+    return OutputDF(input_data.assign(blah = True))
 
+input_df = InputDF(pd.DataFrame({"x": [1.1, 2.2]}))
 
-Named Data Frames
+output = transform(input_df)
 
+isinstance(input_df, InputDF)
+True
 
-* Free software: MIT license
-* Documentation: https://namedframes.readthedocs.io.
+isinstance(output, OutputDF)
+True
+```
 
+If a column is missing, a validation error occurs,
 
-Features
---------
+```python
+OutputDF(input_df)
 
-* TODO
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+ValueError: missing columns: [('blah', <class 'bool'>)]
+```
