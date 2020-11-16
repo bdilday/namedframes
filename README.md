@@ -14,6 +14,8 @@ pip install namedframes
 
 ## Usage
 
+### Pandas
+
 ```python
 import pandas as pd
 from namedframes import PandasNamedFrame
@@ -45,4 +47,27 @@ If a column is missing, a validation error occurs,
 OutputDF(input_df)
 
 ValueError: missing columns: [('blah', <class 'bool'>)]
+```
+
+### Spark
+
+`namedframes` includes an option for pyspark dataframes. 
+Using it requires installation of `pyspark`. You can install this
+separately or with the `[pyspark]` flag to `namedframes`, i.e., 
+
+```bash
+pip install namedframes[pyspark]
+```
+
+Example usage:
+
+```
+import pandas as pd 
+from namedframes import SparkNamedFrame 
+
+class InputDF(SparkNamedFrame): 
+    x: float 
+
+spark_df = spark.createDataFrame(pd.DataFrame({"x": [1.1, 2.2]}))                                                      
+input_df = InputDF(pd.DataFrame(spark_df))
 ```
