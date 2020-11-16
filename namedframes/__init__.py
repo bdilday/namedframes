@@ -4,6 +4,6 @@ __author__ = """Ben Dilday"""
 __email__ = "ben.dilday.phd@gmail.com"
 __version__ = "0.1.0"
 
-from .pandas_frames import NamedPandasDataFrame
+from .pandas_frames import PandasNamedFrame
 
-__all__ = ["NamedPandasDataFrame"]
+__all__ = ["PandasNamedFrame"]

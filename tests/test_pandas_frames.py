@@ -1,14 +1,14 @@
 import pytest
 import pandas as pd
-from namedframes import NamedPandasDataFrame
+from namedframes import PandasNamedFrame
 
 
-class ExampleDF(NamedPandasDataFrame):
+class ExampleDF(PandasNamedFrame):
     x: int
     y: float
 
 
-class ExampleBogusDF(NamedPandasDataFrame):
+class ExampleBogusDF(PandasNamedFrame):
     x: int
     y: float
     extra: str

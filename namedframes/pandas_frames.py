@@ -3,7 +3,7 @@
 from pandas import DataFrame as PandasDataFrame
 
 
-class NamedPandasDataFrame(PandasDataFrame):
+class PandasNamedFrame(PandasDataFrame):
     def __init__(self, pandas_df):
         super().__init__(pandas_df)
         self._validate()
