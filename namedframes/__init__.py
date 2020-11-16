@@ -6,4 +6,11 @@ __version__ = "0.1.1"
 
 from .pandas_frames import PandasNamedFrame
 
-__all__ = ["PandasNamedFrame"]
+try:
+    from .spark_frames import SparkNamedFrame
+
+    __all__ = ["PandasNamedFrame", "SparkNamedFrame"]
+    _has_pyspark = True
+except ModuleNotFoundError:
+    __all__ = ["PandasNamedFrame"]
+    _has_pyspark = False
