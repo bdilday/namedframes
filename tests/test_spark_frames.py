@@ -26,3 +26,8 @@ if _has_pyspark:
 
         with pytest.raises(ValueError):
             _ = ExampleBogusDF(spark_df)
+
+    def test_repr_alt(spark, pandas_df):
+        spark_df = spark.createDataFrame(pandas_df)
+        example_df = ExampleDF(spark_df)
+        assert "DataFrame with columns" in example_df.__repr__()
