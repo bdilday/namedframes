@@ -16,4 +16,3 @@ class SparkNamedFrame(SparkDataFrame, ValidateMixIn, ReprMixIn):
 
     def __repr__(self):
         return self._repr_alt()
-

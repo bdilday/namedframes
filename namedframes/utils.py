@@ -7,6 +7,7 @@ class ValidateMixIn:
         if missing_columns:
             raise ValueError(f"missing columns: {missing_columns}")
 
+
 class ReprMixIn:
     def _repr_alt(self):
         message = "DataFrame with columns:\n"
