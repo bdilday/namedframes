@@ -2,10 +2,10 @@
 
 from pyspark.sql import SQLContext, SparkSession, DataFrame as SparkDataFrame
 from pyspark.ml.common import _py2java
-from .utils import ValidateMixIn
+from .utils import ValidateMixIn, ReprMixIn
 
 
-class SparkNamedFrame(SparkDataFrame, ValidateMixIn):
+class SparkNamedFrame(SparkDataFrame, ValidateMixIn, ReprMixIn):
     def __init__(self, spark_df):
         spark_session = SparkSession.builder.getOrCreate()
         super().__init__(
@@ -15,10 +15,5 @@ class SparkNamedFrame(SparkDataFrame, ValidateMixIn):
         self._validate()
 
     def __repr__(self):
-        message = "DataFrame with columns:\n"
-        column_descriptions = [
-            f"{column_name}: {column_type}"
-            for column_name, column_type in self.__annotations__.items()
-        ]
-        message += "\n".join(column_descriptions)
-        return message + "\n" + super().__repr__()
+        return self._repr_alt()
+
