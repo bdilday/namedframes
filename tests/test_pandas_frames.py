@@ -21,3 +21,8 @@ def test_pandas_dataframe(pandas_df):
 def test_pandas_dataframe_bad_schema(pandas_df):
     with pytest.raises(ValueError):
         _ = ExampleBogusDF(pandas_df)
+
+
+def test_repr_alt(pandas_df):
+    example_df = ExampleDF(pandas_df)
+    assert "DataFrame with columns" in example_df.__repr__()
